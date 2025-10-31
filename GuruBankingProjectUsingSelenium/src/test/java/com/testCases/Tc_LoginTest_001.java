@@ -2,6 +2,10 @@ package com.testCases;
 
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,8 +13,9 @@ import com.pageObjects.LoginPage;
 
 public class Tc_LoginTest_001 extends BaseClass{
 
+	LoginPage lp;
 	@Test
-	public void loginTest() {
+	public void loginTest() throws IOException {
 		
 		LoginPage lp = new LoginPage(driver);
 		lp.setUserName(username);
@@ -26,7 +31,9 @@ public class Tc_LoginTest_001 extends BaseClass{
 			logger.info("login test pass");
 		}
 		else {
+			captureScreen(driver, "loginTest");
 			AssertJUnit.assertTrue(false);
+			logger.info("login test fail");
 		}
 	}
 }
